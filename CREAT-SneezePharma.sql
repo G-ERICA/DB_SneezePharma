@@ -331,3 +331,45 @@ BEGIN
     JOIN Sales s ON s.idSale = ins.idSale;
 END;
 GO
+
+
+--bloqueia o DELETE na tabela customers
+
+CREATE OR ALTER TRIGGER trg_BloqueiaDeleteCustomers
+ON Customers
+INSTEAD OF DELETE
+AS
+BEGIN
+    RAISERROR('Não é permitido realizar DELETE nesta tabela.', 16, 1);
+END;
+GO
+
+--bloqueia o DELETE na tabela suppliers
+CREATE OR ALTER TRIGGER trg_BloqueiaDeleteSuppliers
+ON Suppliers
+INSTEAD OF DELETE
+AS
+BEGIN
+    RAISERROR('Não é permitido realizar DELETE nesta tabela.', 16, 1);
+END;
+GO
+
+--bloqueia o DELETE na tabela ingredient
+CREATE OR ALTER TRIGGER trg_BloqueiaDeleteIngredient
+ON IngredientS
+INSTEAD OF DELETE
+AS
+BEGIN
+    RAISERROR('Não é permitido realizar DELETE nesta tabela.', 16, 1);
+END;
+GO
+
+--bloqueia o DELETE na tabela medicine
+CREATE OR ALTER TRIGGER trg_BloqueiaDeleteMedicine
+ON MedicineS
+INSTEAD OF DELETE
+AS
+BEGIN
+    RAISERROR('Não é permitido realizar DELETE nesta tabela.', 16, 1);
+END;
+GO
